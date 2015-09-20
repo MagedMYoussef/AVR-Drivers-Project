@@ -1,0 +1,1015 @@
+
+Application.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000004e6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000c  00800060  000004e6  0000055a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .stab         000006cc  00000000  00000000  00000568  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  00000c34  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 00000140  00000000  00000000  00000cc0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000f20  00000000  00000000  00000e00  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000575  00000000  00000000  00001d20  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000008c0  00000000  00000000  00002295  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000238  00000000  00000000  00002b58  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000029e  00000000  00000000  00002d90  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000870  00000000  00000000  0000302e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 ee       	ldi	r30, 0xE6	; 230
+  68:	f4 e0       	ldi	r31, 0x04	; 4
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ac 36       	cpi	r26, 0x6C	; 108
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	ac e6       	ldi	r26, 0x6C	; 108
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ac 36       	cpi	r26, 0x6C	; 108
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 e6 00 	call	0x1cc	; 0x1cc <main>
+  8a:	0c 94 71 02 	jmp	0x4e2	; 0x4e2 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <init_7seg>:
+ *  Author: maged
+ */ 
+#include "7-seg.h"
+#include <util/delay.h>
+
+uint8 init_7seg (SEG_CONFIG_t * object) {
+  92:	1f 93       	push	r17
+  94:	cf 93       	push	r28
+  96:	df 93       	push	r29
+  98:	ec 01       	movw	r28, r24
+	uint8 i;
+	if (object -> mode != DECODER && object -> mode != NO_DECODER)
+  9a:	88 81       	ld	r24, Y
+  9c:	82 30       	cpi	r24, 0x02	; 2
+  9e:	f0 f4       	brcc	.+60     	; 0xdc <init_7seg+0x4a>
+		return FALSE;
+		
+	//for enables
+	for (i = 0; i < object -> no_of_digits; i++) {
+  a0:	8b 81       	ldd	r24, Y+3	; 0x03
+  a2:	88 23       	and	r24, r24
+  a4:	51 f0       	breq	.+20     	; 0xba <init_7seg+0x28>
+  a6:	10 e0       	ldi	r17, 0x00	; 0
+		init_pin(object -> control_port, i, OUTPUT);
+  a8:	8a 81       	ldd	r24, Y+2	; 0x02
+  aa:	61 2f       	mov	r22, r17
+  ac:	41 e0       	ldi	r20, 0x01	; 1
+  ae:	0e 94 1d 01 	call	0x23a	; 0x23a <init_pin>
+	uint8 i;
+	if (object -> mode != DECODER && object -> mode != NO_DECODER)
+		return FALSE;
+		
+	//for enables
+	for (i = 0; i < object -> no_of_digits; i++) {
+  b2:	1f 5f       	subi	r17, 0xFF	; 255
+  b4:	8b 81       	ldd	r24, Y+3	; 0x03
+  b6:	18 17       	cp	r17, r24
+  b8:	b8 f3       	brcs	.-18     	; 0xa8 <init_7seg+0x16>
+		init_pin(object -> control_port, i, OUTPUT);
+	}
+	
+	//7-segment output initialization
+	if(object -> mode == DECODER) {
+  ba:	88 81       	ld	r24, Y
+  bc:	81 30       	cpi	r24, 0x01	; 1
+  be:	31 f4       	brne	.+12     	; 0xcc <init_7seg+0x3a>
+		init_port(object -> data_port, 0x0F);
+  c0:	89 81       	ldd	r24, Y+1	; 0x01
+  c2:	6f e0       	ldi	r22, 0x0F	; 15
+  c4:	0e 94 11 01 	call	0x222	; 0x222 <init_port>
+	}
+	else if (object -> mode == NO_DECODER) {
+		init_port(object -> data_port, 0x7F);
+	}
+	return TRUE;
+  c8:	81 e0       	ldi	r24, 0x01	; 1
+  ca:	0b c0       	rjmp	.+22     	; 0xe2 <init_7seg+0x50>
+	
+	//7-segment output initialization
+	if(object -> mode == DECODER) {
+		init_port(object -> data_port, 0x0F);
+	}
+	else if (object -> mode == NO_DECODER) {
+  cc:	88 23       	and	r24, r24
+  ce:	41 f4       	brne	.+16     	; 0xe0 <init_7seg+0x4e>
+		init_port(object -> data_port, 0x7F);
+  d0:	89 81       	ldd	r24, Y+1	; 0x01
+  d2:	6f e7       	ldi	r22, 0x7F	; 127
+  d4:	0e 94 11 01 	call	0x222	; 0x222 <init_port>
+	}
+	return TRUE;
+  d8:	81 e0       	ldi	r24, 0x01	; 1
+  da:	03 c0       	rjmp	.+6      	; 0xe2 <init_7seg+0x50>
+#include <util/delay.h>
+
+uint8 init_7seg (SEG_CONFIG_t * object) {
+	uint8 i;
+	if (object -> mode != DECODER && object -> mode != NO_DECODER)
+		return FALSE;
+  dc:	80 e0       	ldi	r24, 0x00	; 0
+  de:	01 c0       	rjmp	.+2      	; 0xe2 <init_7seg+0x50>
+		init_port(object -> data_port, 0x0F);
+	}
+	else if (object -> mode == NO_DECODER) {
+		init_port(object -> data_port, 0x7F);
+	}
+	return TRUE;
+  e0:	81 e0       	ldi	r24, 0x01	; 1
+}
+  e2:	df 91       	pop	r29
+  e4:	cf 91       	pop	r28
+  e6:	1f 91       	pop	r17
+  e8:	08 95       	ret
+
+000000ea <display>:
+		write_port(object -> data_port, object -> digits_to_display[i]);
+	}
+	return TRUE;
+}
+*/
+uint8 display(SEG_CONFIG_t * object, uint8 number) {
+  ea:	df 92       	push	r13
+  ec:	ef 92       	push	r14
+  ee:	ff 92       	push	r15
+  f0:	0f 93       	push	r16
+  f2:	1f 93       	push	r17
+  f4:	cf 93       	push	r28
+  f6:	df 93       	push	r29
+  f8:	cd b7       	in	r28, 0x3d	; 61
+  fa:	de b7       	in	r29, 0x3e	; 62
+  fc:	2a 97       	sbiw	r28, 0x0a	; 10
+  fe:	0f b6       	in	r0, 0x3f	; 63
+ 100:	f8 94       	cli
+ 102:	de bf       	out	0x3e, r29	; 62
+ 104:	0f be       	out	0x3f, r0	; 63
+ 106:	cd bf       	out	0x3d, r28	; 61
+ 108:	7c 01       	movw	r14, r24
+ 10a:	86 2f       	mov	r24, r22
+	if(object -> mode == DECODER) {
+ 10c:	d7 01       	movw	r26, r14
+ 10e:	9c 91       	ld	r25, X
+ 110:	91 30       	cpi	r25, 0x01	; 1
+ 112:	09 f0       	breq	.+2      	; 0x116 <display+0x2c>
+ 114:	4c c0       	rjmp	.+152    	; 0x1ae <display+0xc4>
+		uint8 i, j;
+		uint8  digits_to_display [10];
+		//****hexa calc
+		for (i = 0; i < (object -> no_of_digits); i++) {
+ 116:	13 96       	adiw	r26, 0x03	; 3
+ 118:	4c 91       	ld	r20, X
+ 11a:	13 97       	sbiw	r26, 0x03	; 3
+ 11c:	44 23       	and	r20, r20
+ 11e:	09 f4       	brne	.+2      	; 0x122 <display+0x38>
+ 120:	46 c0       	rjmp	.+140    	; 0x1ae <display+0xc4>
+ 122:	9e 01       	movw	r18, r28
+ 124:	2f 5f       	subi	r18, 0xFF	; 255
+ 126:	3f 4f       	sbci	r19, 0xFF	; 255
+ 128:	f9 01       	movw	r30, r18
+			digits_to_display [i] = number % 10;
+ 12a:	5a e0       	ldi	r21, 0x0A	; 10
+ 12c:	65 2f       	mov	r22, r21
+ 12e:	0e 94 65 02 	call	0x4ca	; 0x4ca <__udivmodqi4>
+ 132:	91 93       	st	Z+, r25
+uint8 display(SEG_CONFIG_t * object, uint8 number) {
+	if(object -> mode == DECODER) {
+		uint8 i, j;
+		uint8  digits_to_display [10];
+		//****hexa calc
+		for (i = 0; i < (object -> no_of_digits); i++) {
+ 134:	9e 2f       	mov	r25, r30
+ 136:	92 1b       	sub	r25, r18
+ 138:	94 17       	cp	r25, r20
+ 13a:	c0 f3       	brcs	.-16     	; 0x12c <display+0x42>
+			digits_to_display [i] = number % 10;
+			number = number / 10;
+		}
+		//fe 7aga 3'alat hna 
+		for (i = 0; i < object -> no_of_digits; i++) {
+ 13c:	f7 01       	movw	r30, r14
+ 13e:	83 81       	ldd	r24, Z+3	; 0x03
+ 140:	88 23       	and	r24, r24
+ 142:	a9 f1       	breq	.+106    	; 0x1ae <display+0xc4>
+ 144:	00 e0       	ldi	r16, 0x00	; 0
+			write_pin(object -> control_port,i, 1);	//for enable
+			//disable other displays
+			for (j = 0; j < object -> no_of_digits; j++) {
+ 146:	dd 24       	eor	r13, r13
+			digits_to_display [i] = number % 10;
+			number = number / 10;
+		}
+		//fe 7aga 3'alat hna 
+		for (i = 0; i < object -> no_of_digits; i++) {
+			write_pin(object -> control_port,i, 1);	//for enable
+ 148:	d7 01       	movw	r26, r14
+ 14a:	12 96       	adiw	r26, 0x02	; 2
+ 14c:	8c 91       	ld	r24, X
+ 14e:	60 2f       	mov	r22, r16
+ 150:	41 e0       	ldi	r20, 0x01	; 1
+ 152:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+			//disable other displays
+			for (j = 0; j < object -> no_of_digits; j++) {
+ 156:	f7 01       	movw	r30, r14
+ 158:	83 81       	ldd	r24, Z+3	; 0x03
+ 15a:	88 23       	and	r24, r24
+ 15c:	79 f0       	breq	.+30     	; 0x17c <display+0x92>
+ 15e:	1d 2d       	mov	r17, r13
+				if (i == j)
+ 160:	01 17       	cp	r16, r17
+ 162:	39 f0       	breq	.+14     	; 0x172 <display+0x88>
+					continue;
+				write_pin(object -> control_port,j, 0);
+ 164:	d7 01       	movw	r26, r14
+ 166:	12 96       	adiw	r26, 0x02	; 2
+ 168:	8c 91       	ld	r24, X
+ 16a:	61 2f       	mov	r22, r17
+ 16c:	4d 2d       	mov	r20, r13
+ 16e:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+		}
+		//fe 7aga 3'alat hna 
+		for (i = 0; i < object -> no_of_digits; i++) {
+			write_pin(object -> control_port,i, 1);	//for enable
+			//disable other displays
+			for (j = 0; j < object -> no_of_digits; j++) {
+ 172:	1f 5f       	subi	r17, 0xFF	; 255
+ 174:	f7 01       	movw	r30, r14
+ 176:	83 81       	ldd	r24, Z+3	; 0x03
+ 178:	18 17       	cp	r17, r24
+ 17a:	90 f3       	brcs	.-28     	; 0x160 <display+0x76>
+				if (i == j)
+					continue;
+				write_pin(object -> control_port,j, 0);
+			}
+			write_port(object -> data_port,digits_to_display[i]);
+ 17c:	e1 e0       	ldi	r30, 0x01	; 1
+ 17e:	f0 e0       	ldi	r31, 0x00	; 0
+ 180:	ec 0f       	add	r30, r28
+ 182:	fd 1f       	adc	r31, r29
+ 184:	e0 0f       	add	r30, r16
+ 186:	f1 1d       	adc	r31, r1
+ 188:	d7 01       	movw	r26, r14
+ 18a:	11 96       	adiw	r26, 0x01	; 1
+ 18c:	8c 91       	ld	r24, X
+ 18e:	60 81       	ld	r22, Z
+ 190:	0e 94 18 01 	call	0x230	; 0x230 <write_port>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 194:	e7 ea       	ldi	r30, 0xA7	; 167
+ 196:	f1 e6       	ldi	r31, 0x61	; 97
+ 198:	31 97       	sbiw	r30, 0x01	; 1
+ 19a:	f1 f7       	brne	.-4      	; 0x198 <display+0xae>
+ 19c:	00 c0       	rjmp	.+0      	; 0x19e <display+0xb4>
+ 19e:	00 00       	nop
+		for (i = 0; i < (object -> no_of_digits); i++) {
+			digits_to_display [i] = number % 10;
+			number = number / 10;
+		}
+		//fe 7aga 3'alat hna 
+		for (i = 0; i < object -> no_of_digits; i++) {
+ 1a0:	0f 5f       	subi	r16, 0xFF	; 255
+ 1a2:	d7 01       	movw	r26, r14
+ 1a4:	13 96       	adiw	r26, 0x03	; 3
+ 1a6:	8c 91       	ld	r24, X
+ 1a8:	13 97       	sbiw	r26, 0x03	; 3
+ 1aa:	08 17       	cp	r16, r24
+ 1ac:	68 f2       	brcs	.-102    	; 0x148 <display+0x5e>
+		}
+		else if (object -> type == COMMONANODE) {
+		}
+	}
+	return TRUE;
+ 1ae:	81 e0       	ldi	r24, 0x01	; 1
+ 1b0:	2a 96       	adiw	r28, 0x0a	; 10
+ 1b2:	0f b6       	in	r0, 0x3f	; 63
+ 1b4:	f8 94       	cli
+ 1b6:	de bf       	out	0x3e, r29	; 62
+ 1b8:	0f be       	out	0x3f, r0	; 63
+ 1ba:	cd bf       	out	0x3d, r28	; 61
+ 1bc:	df 91       	pop	r29
+ 1be:	cf 91       	pop	r28
+ 1c0:	1f 91       	pop	r17
+ 1c2:	0f 91       	pop	r16
+ 1c4:	ff 90       	pop	r15
+ 1c6:	ef 90       	pop	r14
+ 1c8:	df 90       	pop	r13
+ 1ca:	08 95       	ret
+
+000001cc <main>:
+//#include "switch.h"
+#include "7-seg.h"
+#include "lcd.h"
+#include <util/delay.h>
+#define F_CPU  1000000UL
+int main(void) {
+ 1cc:	cf 93       	push	r28
+ 1ce:	df 93       	push	r29
+ 1d0:	00 d0       	rcall	.+0      	; 0x1d2 <main+0x6>
+ 1d2:	00 d0       	rcall	.+0      	; 0x1d4 <main+0x8>
+ 1d4:	00 d0       	rcall	.+0      	; 0x1d6 <main+0xa>
+ 1d6:	cd b7       	in	r28, 0x3d	; 61
+ 1d8:	de b7       	in	r29, 0x3e	; 62
+	while (1)
+	{
+		display(&Segment, 215);
+	}
+	*/
+	LCD_CONFIG_t display_test= {BASE_D, BASE_C, 1, 0, 1, 2};
+ 1da:	de 01       	movw	r26, r28
+ 1dc:	11 96       	adiw	r26, 0x01	; 1
+ 1de:	e6 e6       	ldi	r30, 0x66	; 102
+ 1e0:	f0 e0       	ldi	r31, 0x00	; 0
+ 1e2:	86 e0       	ldi	r24, 0x06	; 6
+ 1e4:	01 90       	ld	r0, Z+
+ 1e6:	0d 92       	st	X+, r0
+ 1e8:	81 50       	subi	r24, 0x01	; 1
+ 1ea:	e1 f7       	brne	.-8      	; 0x1e4 <main+0x18>
+	init_lcd(&display_test);
+ 1ec:	ce 01       	movw	r24, r28
+ 1ee:	01 96       	adiw	r24, 0x01	; 1
+ 1f0:	0e 94 06 02 	call	0x40c	; 0x40c <init_lcd>
+	while (1) {
+		send_string(&display_test, "MAGED", 5);
+ 1f4:	00 e6       	ldi	r16, 0x60	; 96
+ 1f6:	10 e0       	ldi	r17, 0x00	; 0
+ 1f8:	ce 01       	movw	r24, r28
+ 1fa:	01 96       	adiw	r24, 0x01	; 1
+ 1fc:	b8 01       	movw	r22, r16
+ 1fe:	45 e0       	ldi	r20, 0x05	; 5
+ 200:	0e 94 de 01 	call	0x3bc	; 0x3bc <send_string>
+ 204:	8f e3       	ldi	r24, 0x3F	; 63
+ 206:	9d e0       	ldi	r25, 0x0D	; 13
+ 208:	a3 e0       	ldi	r26, 0x03	; 3
+ 20a:	81 50       	subi	r24, 0x01	; 1
+ 20c:	90 40       	sbci	r25, 0x00	; 0
+ 20e:	a0 40       	sbci	r26, 0x00	; 0
+ 210:	e1 f7       	brne	.-8      	; 0x20a <main+0x3e>
+ 212:	00 c0       	rjmp	.+0      	; 0x214 <main+0x48>
+ 214:	00 00       	nop
+		_delay_ms(1000);
+		send_command(&display_test, 0x01);
+ 216:	ce 01       	movw	r24, r28
+ 218:	01 96       	adiw	r24, 0x01	; 1
+ 21a:	61 e0       	ldi	r22, 0x01	; 1
+ 21c:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <send_command>
+ 220:	eb cf       	rjmp	.-42     	; 0x1f8 <main+0x2c>
+
+00000222 <init_port>:
+
+#include "types.h"
+#include "hw_gpio.h"
+
+uint8 init_port(uint8 reg, uint8 val) {
+	*(volatile uint8*) (reg + DIR_OFFSET) |= val;
+ 222:	e8 2f       	mov	r30, r24
+ 224:	f0 e0       	ldi	r31, 0x00	; 0
+ 226:	81 81       	ldd	r24, Z+1	; 0x01
+ 228:	68 2b       	or	r22, r24
+ 22a:	61 83       	std	Z+1, r22	; 0x01
+	return TRUE;
+}
+ 22c:	81 e0       	ldi	r24, 0x01	; 1
+ 22e:	08 95       	ret
+
+00000230 <write_port>:
+
+uint8 write_port(uint8 reg, uint8 val) {
+	*(volatile uint8*) (reg + OUT_OFFSET) = val;
+ 230:	e8 2f       	mov	r30, r24
+ 232:	f0 e0       	ldi	r31, 0x00	; 0
+ 234:	62 83       	std	Z+2, r22	; 0x02
+	return TRUE;
+}
+ 236:	81 e0       	ldi	r24, 0x01	; 1
+ 238:	08 95       	ret
+
+0000023a <init_pin>:
+
+uint8 init_pin(uint8 reg, uint8 pin_no, uint8 val) {
+	if (0 != val && 1 != val)
+ 23a:	42 30       	cpi	r20, 0x02	; 2
+ 23c:	18 f5       	brcc	.+70     	; 0x284 <init_pin+0x4a>
+		return FALSE;
+
+	if (val)
+ 23e:	44 23       	and	r20, r20
+ 240:	81 f0       	breq	.+32     	; 0x262 <init_pin+0x28>
+		*(volatile uint8*) (reg + DIR_OFFSET) |= 1 << pin_no;
+ 242:	e8 2f       	mov	r30, r24
+ 244:	f0 e0       	ldi	r31, 0x00	; 0
+ 246:	21 81       	ldd	r18, Z+1	; 0x01
+ 248:	81 e0       	ldi	r24, 0x01	; 1
+ 24a:	90 e0       	ldi	r25, 0x00	; 0
+ 24c:	ac 01       	movw	r20, r24
+ 24e:	02 c0       	rjmp	.+4      	; 0x254 <init_pin+0x1a>
+ 250:	44 0f       	add	r20, r20
+ 252:	55 1f       	adc	r21, r21
+ 254:	6a 95       	dec	r22
+ 256:	e2 f7       	brpl	.-8      	; 0x250 <init_pin+0x16>
+ 258:	ba 01       	movw	r22, r20
+ 25a:	62 2b       	or	r22, r18
+ 25c:	61 83       	std	Z+1, r22	; 0x01
+	else if (!val)
+		*(volatile uint8*) (reg + DIR_OFFSET) &= ~(1 << pin_no);
+
+	return TRUE;
+ 25e:	81 e0       	ldi	r24, 0x01	; 1
+ 260:	08 95       	ret
+		return FALSE;
+
+	if (val)
+		*(volatile uint8*) (reg + DIR_OFFSET) |= 1 << pin_no;
+	else if (!val)
+		*(volatile uint8*) (reg + DIR_OFFSET) &= ~(1 << pin_no);
+ 262:	e8 2f       	mov	r30, r24
+ 264:	f0 e0       	ldi	r31, 0x00	; 0
+ 266:	21 81       	ldd	r18, Z+1	; 0x01
+ 268:	81 e0       	ldi	r24, 0x01	; 1
+ 26a:	90 e0       	ldi	r25, 0x00	; 0
+ 26c:	ac 01       	movw	r20, r24
+ 26e:	02 c0       	rjmp	.+4      	; 0x274 <init_pin+0x3a>
+ 270:	44 0f       	add	r20, r20
+ 272:	55 1f       	adc	r21, r21
+ 274:	6a 95       	dec	r22
+ 276:	e2 f7       	brpl	.-8      	; 0x270 <init_pin+0x36>
+ 278:	ba 01       	movw	r22, r20
+ 27a:	60 95       	com	r22
+ 27c:	62 23       	and	r22, r18
+ 27e:	61 83       	std	Z+1, r22	; 0x01
+
+	return TRUE;
+ 280:	81 e0       	ldi	r24, 0x01	; 1
+ 282:	08 95       	ret
+	return TRUE;
+}
+
+uint8 init_pin(uint8 reg, uint8 pin_no, uint8 val) {
+	if (0 != val && 1 != val)
+		return FALSE;
+ 284:	80 e0       	ldi	r24, 0x00	; 0
+		*(volatile uint8*) (reg + DIR_OFFSET) |= 1 << pin_no;
+	else if (!val)
+		*(volatile uint8*) (reg + DIR_OFFSET) &= ~(1 << pin_no);
+
+	return TRUE;
+}
+ 286:	08 95       	ret
+
+00000288 <write_pin>:
+
+uint8 write_pin(uint8 reg, uint8 pin_no, uint8 val) {
+	if (0 != val && 1 != val)
+ 288:	42 30       	cpi	r20, 0x02	; 2
+ 28a:	18 f5       	brcc	.+70     	; 0x2d2 <write_pin+0x4a>
+		return FALSE;
+
+	if (val)
+ 28c:	44 23       	and	r20, r20
+ 28e:	81 f0       	breq	.+32     	; 0x2b0 <write_pin+0x28>
+		*(volatile uint8*) (reg + OUT_OFFSET) |= 1 << pin_no;
+ 290:	e8 2f       	mov	r30, r24
+ 292:	f0 e0       	ldi	r31, 0x00	; 0
+ 294:	22 81       	ldd	r18, Z+2	; 0x02
+ 296:	81 e0       	ldi	r24, 0x01	; 1
+ 298:	90 e0       	ldi	r25, 0x00	; 0
+ 29a:	ac 01       	movw	r20, r24
+ 29c:	02 c0       	rjmp	.+4      	; 0x2a2 <write_pin+0x1a>
+ 29e:	44 0f       	add	r20, r20
+ 2a0:	55 1f       	adc	r21, r21
+ 2a2:	6a 95       	dec	r22
+ 2a4:	e2 f7       	brpl	.-8      	; 0x29e <write_pin+0x16>
+ 2a6:	ba 01       	movw	r22, r20
+ 2a8:	62 2b       	or	r22, r18
+ 2aa:	62 83       	std	Z+2, r22	; 0x02
+	else if (!val)
+		*(volatile uint8*) (reg + OUT_OFFSET) &= ~(1 << pin_no);
+
+	return TRUE;
+ 2ac:	81 e0       	ldi	r24, 0x01	; 1
+ 2ae:	08 95       	ret
+		return FALSE;
+
+	if (val)
+		*(volatile uint8*) (reg + OUT_OFFSET) |= 1 << pin_no;
+	else if (!val)
+		*(volatile uint8*) (reg + OUT_OFFSET) &= ~(1 << pin_no);
+ 2b0:	e8 2f       	mov	r30, r24
+ 2b2:	f0 e0       	ldi	r31, 0x00	; 0
+ 2b4:	22 81       	ldd	r18, Z+2	; 0x02
+ 2b6:	81 e0       	ldi	r24, 0x01	; 1
+ 2b8:	90 e0       	ldi	r25, 0x00	; 0
+ 2ba:	ac 01       	movw	r20, r24
+ 2bc:	02 c0       	rjmp	.+4      	; 0x2c2 <write_pin+0x3a>
+ 2be:	44 0f       	add	r20, r20
+ 2c0:	55 1f       	adc	r21, r21
+ 2c2:	6a 95       	dec	r22
+ 2c4:	e2 f7       	brpl	.-8      	; 0x2be <write_pin+0x36>
+ 2c6:	ba 01       	movw	r22, r20
+ 2c8:	60 95       	com	r22
+ 2ca:	62 23       	and	r22, r18
+ 2cc:	62 83       	std	Z+2, r22	; 0x02
+
+	return TRUE;
+ 2ce:	81 e0       	ldi	r24, 0x01	; 1
+ 2d0:	08 95       	ret
+	return TRUE;
+}
+
+uint8 write_pin(uint8 reg, uint8 pin_no, uint8 val) {
+	if (0 != val && 1 != val)
+		return FALSE;
+ 2d2:	80 e0       	ldi	r24, 0x00	; 0
+		*(volatile uint8*) (reg + OUT_OFFSET) |= 1 << pin_no;
+	else if (!val)
+		*(volatile uint8*) (reg + OUT_OFFSET) &= ~(1 << pin_no);
+
+	return TRUE;
+}
+ 2d4:	08 95       	ret
+
+000002d6 <read_pin>:
+
+uint8 read_pin(uint8 reg, uint8 pin_no) {
+
+	uint8 val = *(volatile uint8*) (reg + INPUT_OFFSET) & 1 << pin_no;
+ 2d6:	e8 2f       	mov	r30, r24
+ 2d8:	f0 e0       	ldi	r31, 0x00	; 0
+ 2da:	20 81       	ld	r18, Z
+ 2dc:	81 e0       	ldi	r24, 0x01	; 1
+ 2de:	90 e0       	ldi	r25, 0x00	; 0
+ 2e0:	ac 01       	movw	r20, r24
+ 2e2:	02 c0       	rjmp	.+4      	; 0x2e8 <read_pin+0x12>
+ 2e4:	44 0f       	add	r20, r20
+ 2e6:	55 1f       	adc	r21, r21
+ 2e8:	6a 95       	dec	r22
+ 2ea:	e2 f7       	brpl	.-8      	; 0x2e4 <read_pin+0xe>
+ 2ec:	ba 01       	movw	r22, r20
+ 2ee:	62 23       	and	r22, r18
+	if (val)
+		return 1;
+ 2f0:	81 e0       	ldi	r24, 0x01	; 1
+ 2f2:	09 f4       	brne	.+2      	; 0x2f6 <read_pin+0x20>
+ 2f4:	80 e0       	ldi	r24, 0x00	; 0
+
+	return 0;
+}
+ 2f6:	08 95       	ret
+
+000002f8 <send_command>:
+ */ 
+
+#include "lcd.h"
+#include <util/delay.h>
+
+uint8 send_command(LCD_CONFIG_t * object, uint8 command) {
+ 2f8:	1f 93       	push	r17
+ 2fa:	cf 93       	push	r28
+ 2fc:	df 93       	push	r29
+ 2fe:	ec 01       	movw	r28, r24
+ 300:	16 2f       	mov	r17, r22
+	write_pin(object -> command_port, object ->RS, 0);
+ 302:	88 81       	ld	r24, Y
+ 304:	6b 81       	ldd	r22, Y+3	; 0x03
+ 306:	40 e0       	ldi	r20, 0x00	; 0
+ 308:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+	write_pin(object ->command_port, object -> RW, 0);
+ 30c:	88 81       	ld	r24, Y
+ 30e:	6c 81       	ldd	r22, Y+4	; 0x04
+ 310:	40 e0       	ldi	r20, 0x00	; 0
+ 312:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+	
+	write_port(object ->data_port, command);
+ 316:	89 81       	ldd	r24, Y+1	; 0x01
+ 318:	61 2f       	mov	r22, r17
+ 31a:	0e 94 18 01 	call	0x230	; 0x230 <write_port>
+	
+	//latching from high to low -- data must be sent before latching
+	write_pin(object ->command_port, object -> EN, 0);
+ 31e:	88 81       	ld	r24, Y
+ 320:	6d 81       	ldd	r22, Y+5	; 0x05
+ 322:	40 e0       	ldi	r20, 0x00	; 0
+ 324:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 328:	83 e0       	ldi	r24, 0x03	; 3
+ 32a:	8a 95       	dec	r24
+ 32c:	f1 f7       	brne	.-4      	; 0x32a <send_command+0x32>
+ 32e:	00 00       	nop
+	_delay_us(10);
+	write_pin(object ->command_port, object -> EN, 1);
+ 330:	88 81       	ld	r24, Y
+ 332:	6d 81       	ldd	r22, Y+5	; 0x05
+ 334:	41 e0       	ldi	r20, 0x01	; 1
+ 336:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+ 33a:	91 e2       	ldi	r25, 0x21	; 33
+ 33c:	9a 95       	dec	r25
+ 33e:	f1 f7       	brne	.-4      	; 0x33c <send_command+0x44>
+ 340:	00 00       	nop
+	_delay_us(100);
+	
+	if (command == 0x01 || command == 0x02) {
+ 342:	11 50       	subi	r17, 0x01	; 1
+ 344:	12 30       	cpi	r17, 0x02	; 2
+ 346:	38 f4       	brcc	.+14     	; 0x356 <send_command+0x5e>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 348:	83 ef       	ldi	r24, 0xF3	; 243
+ 34a:	91 e0       	ldi	r25, 0x01	; 1
+ 34c:	01 97       	sbiw	r24, 0x01	; 1
+ 34e:	f1 f7       	brne	.-4      	; 0x34c <send_command+0x54>
+ 350:	00 c0       	rjmp	.+0      	; 0x352 <send_command+0x5a>
+ 352:	00 00       	nop
+		_delay_ms(2);
+		return TRUE;
+ 354:	04 c0       	rjmp	.+8      	; 0x35e <send_command+0x66>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 356:	90 e1       	ldi	r25, 0x10	; 16
+ 358:	9a 95       	dec	r25
+ 35a:	f1 f7       	brne	.-4      	; 0x358 <send_command+0x60>
+ 35c:	00 c0       	rjmp	.+0      	; 0x35e <send_command+0x66>
+	}
+	
+	_delay_us(50);
+	return TRUE;
+}
+ 35e:	81 e0       	ldi	r24, 0x01	; 1
+ 360:	df 91       	pop	r29
+ 362:	cf 91       	pop	r28
+ 364:	1f 91       	pop	r17
+ 366:	08 95       	ret
+
+00000368 <send_char>:
+
+uint8 send_char(LCD_CONFIG_t * object, uint8 data) {
+ 368:	1f 93       	push	r17
+ 36a:	cf 93       	push	r28
+ 36c:	df 93       	push	r29
+ 36e:	ec 01       	movw	r28, r24
+ 370:	16 2f       	mov	r17, r22
+	write_pin(object -> command_port, object ->RS, 1);
+ 372:	88 81       	ld	r24, Y
+ 374:	6b 81       	ldd	r22, Y+3	; 0x03
+ 376:	41 e0       	ldi	r20, 0x01	; 1
+ 378:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+	write_pin(object ->command_port, object -> RW, 0);
+ 37c:	88 81       	ld	r24, Y
+ 37e:	6c 81       	ldd	r22, Y+4	; 0x04
+ 380:	40 e0       	ldi	r20, 0x00	; 0
+ 382:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+	
+	write_port(object ->data_port, data);
+ 386:	89 81       	ldd	r24, Y+1	; 0x01
+ 388:	61 2f       	mov	r22, r17
+ 38a:	0e 94 18 01 	call	0x230	; 0x230 <write_port>
+	
+	//latching from high to low -- data must be sent before latching	
+	write_pin(object ->command_port, object -> EN, 0);
+ 38e:	88 81       	ld	r24, Y
+ 390:	6d 81       	ldd	r22, Y+5	; 0x05
+ 392:	40 e0       	ldi	r20, 0x00	; 0
+ 394:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+ 398:	83 e0       	ldi	r24, 0x03	; 3
+ 39a:	8a 95       	dec	r24
+ 39c:	f1 f7       	brne	.-4      	; 0x39a <send_char+0x32>
+ 39e:	00 00       	nop
+	_delay_us(10);
+	write_pin(object ->command_port, object -> EN, 1);
+ 3a0:	88 81       	ld	r24, Y
+ 3a2:	6d 81       	ldd	r22, Y+5	; 0x05
+ 3a4:	41 e0       	ldi	r20, 0x01	; 1
+ 3a6:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+ 3aa:	81 e2       	ldi	r24, 0x21	; 33
+ 3ac:	8a 95       	dec	r24
+ 3ae:	f1 f7       	brne	.-4      	; 0x3ac <send_char+0x44>
+ 3b0:	00 00       	nop
+	_delay_us(100);
+	return TRUE;
+}
+ 3b2:	81 e0       	ldi	r24, 0x01	; 1
+ 3b4:	df 91       	pop	r29
+ 3b6:	cf 91       	pop	r28
+ 3b8:	1f 91       	pop	r17
+ 3ba:	08 95       	ret
+
+000003bc <send_string>:
+
+uint8 send_string(LCD_CONFIG_t * object, uint8 * str, uint8 length) {
+ 3bc:	ef 92       	push	r14
+ 3be:	ff 92       	push	r15
+ 3c0:	0f 93       	push	r16
+ 3c2:	1f 93       	push	r17
+ 3c4:	cf 93       	push	r28
+ 3c6:	df 93       	push	r29
+ 3c8:	8c 01       	movw	r16, r24
+ 3ca:	d4 2f       	mov	r29, r20
+	uint8 i;
+	for (i = 0; i < length; i++) {
+ 3cc:	44 23       	and	r20, r20
+ 3ce:	b1 f0       	breq	.+44     	; 0x3fc <send_string+0x40>
+ 3d0:	e6 2e       	mov	r14, r22
+ 3d2:	f7 2e       	mov	r15, r23
+ 3d4:	c0 e0       	ldi	r28, 0x00	; 0
+		send_char(object, *(str + i));
+ 3d6:	f7 01       	movw	r30, r14
+ 3d8:	61 91       	ld	r22, Z+
+ 3da:	7f 01       	movw	r14, r30
+ 3dc:	c8 01       	movw	r24, r16
+ 3de:	0e 94 b4 01 	call	0x368	; 0x368 <send_char>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 3e2:	87 ea       	ldi	r24, 0xA7	; 167
+ 3e4:	91 e6       	ldi	r25, 0x61	; 97
+ 3e6:	01 97       	sbiw	r24, 0x01	; 1
+ 3e8:	f1 f7       	brne	.-4      	; 0x3e6 <send_string+0x2a>
+ 3ea:	00 c0       	rjmp	.+0      	; 0x3ec <send_string+0x30>
+ 3ec:	00 00       	nop
+		_delay_ms(100);
+		send_command(object, 0x14);
+ 3ee:	c8 01       	movw	r24, r16
+ 3f0:	64 e1       	ldi	r22, 0x14	; 20
+ 3f2:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <send_command>
+	return TRUE;
+}
+
+uint8 send_string(LCD_CONFIG_t * object, uint8 * str, uint8 length) {
+	uint8 i;
+	for (i = 0; i < length; i++) {
+ 3f6:	cf 5f       	subi	r28, 0xFF	; 255
+ 3f8:	cd 17       	cp	r28, r29
+ 3fa:	69 f7       	brne	.-38     	; 0x3d6 <send_string+0x1a>
+		send_char(object, *(str + i));
+		_delay_ms(100);
+		send_command(object, 0x14);
+	}
+	return TRUE;
+}
+ 3fc:	81 e0       	ldi	r24, 0x01	; 1
+ 3fe:	df 91       	pop	r29
+ 400:	cf 91       	pop	r28
+ 402:	1f 91       	pop	r17
+ 404:	0f 91       	pop	r16
+ 406:	ff 90       	pop	r15
+ 408:	ef 90       	pop	r14
+ 40a:	08 95       	ret
+
+0000040c <init_lcd>:
+
+uint8 init_lcd(LCD_CONFIG_t * object) {
+ 40c:	cf 93       	push	r28
+ 40e:	df 93       	push	r29
+ 410:	ec 01       	movw	r28, r24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 412:	85 e0       	ldi	r24, 0x05	; 5
+ 414:	8a 95       	dec	r24
+ 416:	f1 f7       	brne	.-4      	; 0x414 <init_lcd+0x8>
+	_delay_us(15);
+	
+	init_port(object ->command_port, 0xFF);
+ 418:	88 81       	ld	r24, Y
+ 41a:	6f ef       	ldi	r22, 0xFF	; 255
+ 41c:	0e 94 11 01 	call	0x222	; 0x222 <init_port>
+	init_port(object ->data_port, 0xFF);
+ 420:	89 81       	ldd	r24, Y+1	; 0x01
+ 422:	6f ef       	ldi	r22, 0xFF	; 255
+ 424:	0e 94 11 01 	call	0x222	; 0x222 <init_port>
+	send_command(object, 0x38);
+ 428:	ce 01       	movw	r24, r28
+ 42a:	68 e3       	ldi	r22, 0x38	; 56
+ 42c:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <send_command>
+	send_command(object, 0x0E);
+ 430:	ce 01       	movw	r24, r28
+ 432:	6e e0       	ldi	r22, 0x0E	; 14
+ 434:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <send_command>
+	send_command(object, 0x01);
+ 438:	ce 01       	movw	r24, r28
+ 43a:	61 e0       	ldi	r22, 0x01	; 1
+ 43c:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <send_command>
+	
+	return TRUE;
+ 440:	81 e0       	ldi	r24, 0x01	; 1
+ 442:	df 91       	pop	r29
+ 444:	cf 91       	pop	r28
+ 446:	08 95       	ret
+
+00000448 <init_led>:
+ */
+
+#include "led.h"
+
+uint8 init_led (uint8 reg, uint8 pin_no) {
+	init_pin (reg, pin_no, OUTPUT);
+ 448:	41 e0       	ldi	r20, 0x01	; 1
+ 44a:	0e 94 1d 01 	call	0x23a	; 0x23a <init_pin>
+	return TRUE;
+}
+ 44e:	81 e0       	ldi	r24, 0x01	; 1
+ 450:	08 95       	ret
+
+00000452 <led_on>:
+
+uint8 led_on (uint8 reg, uint8 pin_no) {
+	write_pin(reg, pin_no, 1);
+ 452:	41 e0       	ldi	r20, 0x01	; 1
+ 454:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+	return TRUE;
+}
+ 458:	81 e0       	ldi	r24, 0x01	; 1
+ 45a:	08 95       	ret
+
+0000045c <led_off>:
+
+uint8 led_off (uint8 reg, uint8 pin_no) {
+	write_pin(reg, pin_no, 0);
+ 45c:	40 e0       	ldi	r20, 0x00	; 0
+ 45e:	0e 94 44 01 	call	0x288	; 0x288 <write_pin>
+	return TRUE;
+}
+ 462:	81 e0       	ldi	r24, 0x01	; 1
+ 464:	08 95       	ret
+
+00000466 <led_toggle>:
+
+uint8 led_toggle (uint8 reg, uint8 pin_no) {
+ 466:	cf 93       	push	r28
+ 468:	df 93       	push	r29
+ 46a:	d8 2f       	mov	r29, r24
+ 46c:	c6 2f       	mov	r28, r22
+	if (read_pin(reg, pin_no))
+ 46e:	0e 94 6b 01 	call	0x2d6	; 0x2d6 <read_pin>
+ 472:	88 23       	and	r24, r24
+ 474:	29 f0       	breq	.+10     	; 0x480 <led_toggle+0x1a>
+		led_off(reg, pin_no);
+ 476:	8d 2f       	mov	r24, r29
+ 478:	6c 2f       	mov	r22, r28
+ 47a:	0e 94 2e 02 	call	0x45c	; 0x45c <led_off>
+ 47e:	0a c0       	rjmp	.+20     	; 0x494 <led_toggle+0x2e>
+	else if (!read_pin(reg, pin_no))
+ 480:	8d 2f       	mov	r24, r29
+ 482:	6c 2f       	mov	r22, r28
+ 484:	0e 94 6b 01 	call	0x2d6	; 0x2d6 <read_pin>
+ 488:	88 23       	and	r24, r24
+ 48a:	21 f4       	brne	.+8      	; 0x494 <led_toggle+0x2e>
+		led_on(reg, pin_no);
+ 48c:	8d 2f       	mov	r24, r29
+ 48e:	6c 2f       	mov	r22, r28
+ 490:	0e 94 29 02 	call	0x452	; 0x452 <led_on>
+	return TRUE;
+}
+ 494:	81 e0       	ldi	r24, 0x01	; 1
+ 496:	df 91       	pop	r29
+ 498:	cf 91       	pop	r28
+ 49a:	08 95       	ret
+
+0000049c <init_switch>:
+ *      Author: maged
+ */
+#include "switch.h"
+
+uint8 init_switch (uint8 reg, uint8 pin_no) {
+	init_pin(reg, pin_no, INPUT);
+ 49c:	40 e0       	ldi	r20, 0x00	; 0
+ 49e:	0e 94 1d 01 	call	0x23a	; 0x23a <init_pin>
+	return TRUE;
+}
+ 4a2:	81 e0       	ldi	r24, 0x01	; 1
+ 4a4:	08 95       	ret
+
+000004a6 <read_switch>:
+
+uint8 read_switch (uint8 reg, uint8 pin_no, uint8 mode) {
+	if (mode == PULLUP) {
+ 4a6:	41 30       	cpi	r20, 0x01	; 1
+ 4a8:	21 f4       	brne	.+8      	; 0x4b2 <read_switch+0xc>
+		return read_pin(reg, pin_no);	
+ 4aa:	0e 94 6b 01 	call	0x2d6	; 0x2d6 <read_pin>
+ 4ae:	98 2f       	mov	r25, r24
+ 4b0:	0a c0       	rjmp	.+20     	; 0x4c6 <read_switch+0x20>
+	}
+	else if (mode == PULLDOWN){
+ 4b2:	44 23       	and	r20, r20
+ 4b4:	39 f4       	brne	.+14     	; 0x4c4 <read_switch+0x1e>
+		return !(read_pin(reg, pin_no));
+ 4b6:	0e 94 6b 01 	call	0x2d6	; 0x2d6 <read_pin>
+ 4ba:	91 e0       	ldi	r25, 0x01	; 1
+ 4bc:	88 23       	and	r24, r24
+ 4be:	19 f0       	breq	.+6      	; 0x4c6 <read_switch+0x20>
+ 4c0:	90 e0       	ldi	r25, 0x00	; 0
+ 4c2:	01 c0       	rjmp	.+2      	; 0x4c6 <read_switch+0x20>
+ 4c4:	08 95       	ret
+	}
+}
+ 4c6:	89 2f       	mov	r24, r25
+ 4c8:	08 95       	ret
+
+000004ca <__udivmodqi4>:
+ 4ca:	99 1b       	sub	r25, r25
+ 4cc:	79 e0       	ldi	r23, 0x09	; 9
+ 4ce:	04 c0       	rjmp	.+8      	; 0x4d8 <__udivmodqi4_ep>
+
+000004d0 <__udivmodqi4_loop>:
+ 4d0:	99 1f       	adc	r25, r25
+ 4d2:	96 17       	cp	r25, r22
+ 4d4:	08 f0       	brcs	.+2      	; 0x4d8 <__udivmodqi4_ep>
+ 4d6:	96 1b       	sub	r25, r22
+
+000004d8 <__udivmodqi4_ep>:
+ 4d8:	88 1f       	adc	r24, r24
+ 4da:	7a 95       	dec	r23
+ 4dc:	c9 f7       	brne	.-14     	; 0x4d0 <__udivmodqi4_loop>
+ 4de:	80 95       	com	r24
+ 4e0:	08 95       	ret
+
+000004e2 <_exit>:
+ 4e2:	f8 94       	cli
+
+000004e4 <__stop_program>:
+ 4e4:	ff cf       	rjmp	.-2      	; 0x4e4 <__stop_program>
