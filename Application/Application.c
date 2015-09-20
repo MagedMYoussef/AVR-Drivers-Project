@@ -25,7 +25,7 @@ int main(void) {
 	init_lcd(&display_test);
 	while (1) {
 		send_string(&display_test, "MAGED", 5);
-		_delay_ms(1000);
+		_delay_ms(500);
 		send_command(&display_test, 0x01);
 	}	
 	return 0;
